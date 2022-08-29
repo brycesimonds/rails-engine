@@ -11,7 +11,7 @@
           null,
           1,
           null,
-          0,
+          1,
           null,
           null
         ]
@@ -279,7 +279,7 @@
           null,
           null,
           1,
-          1,
+          2,
           null,
           null,
           null,
@@ -321,8 +321,23 @@
           1,
           null
         ]
+      },
+      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1661817101
+    "timestamp": 1661817187
   }
 }
