@@ -1,5 +1,7 @@
 # README
 
+<img width="1361" alt="Screen Shot 2022-08-29 at 3 52 32 PM" src="https://user-images.githubusercontent.com/103782984/187305629-24efcdcd-ff72-4416-997d-1fe6c048a40e.png">
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
