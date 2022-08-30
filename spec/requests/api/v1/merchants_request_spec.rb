@@ -49,11 +49,11 @@ RSpec.describe "Merchants API" do
     merchant_2.items.create(attributes_for(:item))
     
     get "/api/v1/merchants/#{merchant_1.id}/items"
- 
+    
     response_body = JSON.parse(response.body, symbolize_names: true)
     merchant_1_data = response_body[:data]
 
     expect(response).to be_successful
-    expect(merchant_1_data[:relationships][:items][:data].count).to eq(2)
+    expect(merchant_1_data.count).to eq(2)
   end
 end

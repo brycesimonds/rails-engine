@@ -57,9 +57,9 @@
           null,
           1,
           1,
-          null,
           1,
-          1,
+          0,
+          0,
           null,
           null
         ]
@@ -425,22 +425,13 @@
           null,
           1,
           1,
+          1,
           null,
           null
         ]
       },
       "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/controllers/application_controller.rb": {
         "lines": [
-          1,
-          null
-        ]
-      },
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/serializers/merchant_serializer.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
           1,
           null
         ]
@@ -454,6 +445,6 @@
         ]
       }
     },
-    "timestamp": 1661889713
+    "timestamp": 1661891272
   }
 }

@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2022-08-30T14:01:53-06:00">2022-08-30T14:01:53-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2022-08-30T14:27:52-06:00">2022-08-30T14:27:52-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="yellow">
-  82.35%
+  80.6%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.93
+         0.92
        </span>
     </span> hits/line
     )
@@ -39,15 +39,15 @@
   <a name="AllFiles"></a>
 
   <div>
-    <b>23</b> files in total.
+    <b>22</b> files in total.
   </div>
 
   <div class="t-line-summary">
-    <b>136</b> relevant lines,
-    <span class="green"><b>112</b> lines covered</span> and
-    <span class="red"><b>24</b> lines missed. </span>
+    <b>134</b> relevant lines,
+    <span class="green"><b>108</b> lines covered</span> and
+    <span class="red"><b>26</b> lines missed. </span>
     (<span class="yellow">
-  82.35%
+  80.6%
 </span>
 )
   </div>
@@ -72,12 +72,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#83399c00361264fc23d8e3e7f982b035ea3d60cf" class="src_link" title="app/controllers/api/v1/merchants_controller.rb">app/controllers/api/v1/merchants_controller.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">71.43 %</td>
-            <td class="cell--number">13</td>
-            <td class="cell--number">7</td>
-            <td class="cell--number">5</td>
+            <td class="red strong cell--number t-file__coverage">75.00 %</td>
+            <td class="cell--number">14</td>
+            <td class="cell--number">8</td>
+            <td class="cell--number">6</td>
             <td class="cell--number">2</td>
-            <td class="cell--number">0.71</td>
+            <td class="cell--number">0.75</td>
             
           </tr>
         
@@ -131,17 +131,6 @@
             <td class="cell--number">4</td>
             <td class="cell--number">3</td>
             <td class="cell--number">3</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
-            
-          </tr>
-        
-          <tr class="t-file">
-            <td class="strong t-file__name"><a href="#32882af6246f10be2ea6782aa35313f7d1dbeb1a" class="src_link" title="app/serializers/merchant_serializer.rb">app/serializers/merchant_serializer.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">6</td>
-            <td class="cell--number">4</td>
-            <td class="cell--number">4</td>
             <td class="cell--number">0</td>
             <td class="cell--number">1.00</td>
             
@@ -314,12 +303,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#06dcdcfb0f5cf417bfef8db0705a2e33cb0f775d" class="src_link" title="spec/requests/api/v1/merchants_request_spec.rb">spec/requests/api/v1/merchants_request_spec.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">44.44 %</td>
+            <td class="red strong cell--number t-file__coverage">40.54 %</td>
             <td class="cell--number">59</td>
-            <td class="cell--number">36</td>
-            <td class="cell--number">16</td>
-            <td class="cell--number">20</td>
-            <td class="cell--number">0.44</td>
+            <td class="cell--number">37</td>
+            <td class="cell--number">15</td>
+            <td class="cell--number">22</td>
+            <td class="cell--number">0.41</td>
             
           </tr>
         
@@ -345,7 +334,7 @@
     <h3>app/controllers/api/v1/merchants_controller.rb</h3>
     <h4>
       <span class="red">
-  71.43%
+  75.0%
 </span>
 
       lines covered
@@ -354,8 +343,8 @@
     
 
     <div class="t-line-summary">
-      <b>7</b> relevant lines.
-      <span class="green"><b>5</b> lines covered</span> and
+      <b>8</b> relevant lines.
+      <span class="green"><b>6</b> lines covered</span> and
       <span class="red"><b>2</b> lines missed.</span>
     </div>
 
@@ -483,12 +472,23 @@
 
             
 
-            <code class="ruby">    render json: MerchantSerializer.new(Merchant.find(params[:merchant_id]))</code>
+            <code class="ruby">    merchant = Merchant.find(params[:merchant_id])</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="12">
+          <li class="covered" data-hits="1" data-linenumber="12">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    render json: ItemSerializer.new(merchant.items)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="13">
             
             
 
@@ -499,7 +499,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="13">
+          <li class="never" data-hits="" data-linenumber="14">
             
             
 
@@ -979,109 +979,12 @@
 
             
 
-            <code class="ruby">  attributes :name, :description, :unit_price</code>
+            <code class="ruby">  attributes :name, :description, :unit_price, :merchant_id</code>
           </li>
         </div>
       
         <div>
           <li class="never" data-hits="" data-linenumber="4">
-            
-            
-
-            
-
-            <code class="ruby">end</code>
-          </li>
-        </div>
-      
-    </ol>
-  </pre>
-</div>
-
-      
-        <div class="source_table" id="32882af6246f10be2ea6782aa35313f7d1dbeb1a">
-  <div class="header">
-    <h3>app/serializers/merchant_serializer.rb</h3>
-    <h4>
-      <span class="green">
-  100.0%
-</span>
-
-      lines covered
-    </h4>
-
-    
-
-    <div class="t-line-summary">
-      <b>4</b> relevant lines.
-      <span class="green"><b>4</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
-    </div>
-
-    
-
-  </div>
-
-  <pre>
-    <ol>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="1">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">class MerchantSerializer</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="2">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  include JSONAPI::Serializer</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="3">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  attributes :name</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="4">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="5">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  has_many :items</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="6">
             
             
 
@@ -4338,7 +4241,7 @@
     <h3>spec/requests/api/v1/merchants_request_spec.rb</h3>
     <h4>
       <span class="red">
-  44.44%
+  40.54%
 </span>
 
       lines covered
@@ -4347,9 +4250,9 @@
     
 
     <div class="t-line-summary">
-      <b>36</b> relevant lines.
-      <span class="green"><b>16</b> lines covered</span> and
-      <span class="red"><b>20</b> lines missed.</span>
+      <b>37</b> relevant lines.
+      <span class="green"><b>15</b> lines covered</span> and
+      <span class="red"><b>22</b> lines missed.</span>
     </div>
 
     
@@ -4927,7 +4830,7 @@
 
             
 
-            <code class="ruby"> </code>
+            <code class="ruby">    </code>
           </li>
         </div>
       
@@ -4954,19 +4857,19 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="55">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="55">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    binding.pry</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="56">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="56">
+            
             
 
             
@@ -4976,13 +4879,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="57">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="57">
+            
             
 
             
 
-            <code class="ruby">    expect(merchant_1_data[:relationships][:items][:data].count).to eq(2)</code>
+            <code class="ruby">    expect(merchant_1_data.count).to eq(2)</code>
           </li>
         </div>
       
