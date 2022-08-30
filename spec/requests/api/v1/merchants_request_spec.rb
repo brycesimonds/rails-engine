@@ -23,9 +23,11 @@ RSpec.describe "Merchants API" do
   end
 
   it 'can get one merchant by its id' do
-    id = create(:merchant).id
+    merchant_1 = create(:merchant)
+    merchant_1.items.create(attributes_for(:item))
+    merchant_1.items.create(attributes_for(:item))
 
-    get "/api/v1/merchants/#{id}"
+    get "/api/v1/merchants/#{merchant_1.id}"
 
     response_body = JSON.parse(response.body, symbolize_names: true)
     merchant = response_body[:data]
@@ -33,10 +35,22 @@ RSpec.describe "Merchants API" do
     expect(response).to be_successful
 
     expect(merchant).to have_key(:id)
-    expect(merchant[:id].to_i).to eq(id)
+    expect(merchant[:id].to_i).to eq(merchant_1.id)
 
     expect(merchant[:attributes]).to have_key(:name)
     expect(merchant[:attributes][:name]).to be_a(String)
+  end
+
+  it 'returns 404 if no such merchant id exists' do
+    merchant_1 = create(:merchant)
+    merchant_1.items.create(attributes_for(:item))
+    merchant_1.items.create(attributes_for(:item))
+
+    get "/api/v1/merchants/567"
+    response_body = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response.status).to eq(404)
+    expect(response_body[:message]).to eq("Couldn't find Merchant with 'id'=567")
   end
 
   it 'can get all items for a given merchant id' do
@@ -55,5 +69,22 @@ RSpec.describe "Merchants API" do
 
     expect(response).to be_successful
     expect(merchant_1_data.count).to eq(2)
+  end
+
+  it 'returns 404 if no such merchant id exists' do
+    merchant_1 = create(:merchant)
+    merchant_1.items.create(attributes_for(:item))
+    merchant_1.items.create(attributes_for(:item))
+
+    merchant_2 = create(:merchant)
+    merchant_2.items.create(attributes_for(:item))
+    merchant_2.items.create(attributes_for(:item))
+    
+    get "/api/v1/merchants/999999/items"
+    
+    response_body = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response.status).to eq(404)
+    expect(response_body[:message]).to eq("Couldn't find Merchant with 'id'=999999")
   end
 end
