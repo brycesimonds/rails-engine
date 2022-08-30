@@ -10,7 +10,7 @@ RSpec.describe "Items API" do
 
     response_body = JSON.parse(response.body, symbolize_names: true)
     items = response_body[:data]
-    binding.pry
+
     expect(items.count).to eq(3)
 
     items.each do |item|
@@ -19,6 +19,15 @@ RSpec.describe "Items API" do
 
       expect(item[:attributes]).to have_key(:name)
       expect(item[:attributes][:name]).to be_a(String)
+
+      expect(item[:attributes]).to have_key(:description)
+      expect(item[:attributes][:description]).to be_a(String)
+
+      expect(item[:attributes]).to have_key(:unit_price)
+      expect(item[:attributes][:unit_price]).to be_a(Float)
+
+      expect(item[:attributes]).to have_key(:merchant_id)
+      expect(item[:attributes][:merchant_id]).to be_an(Integer)
     end
   end
 end 
