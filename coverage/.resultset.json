@@ -30,9 +30,9 @@
           1,
           null,
           1,
-          0,
-          0,
           null,
+          1,
+          1,
           0,
           null,
           0,
@@ -307,7 +307,7 @@
           null,
           null,
           1,
-          1,
+          2,
           null,
           null,
           null,
@@ -349,8 +349,35 @@
           1,
           null
         ]
+      },
+      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
+        "lines": [
+          1,
+          1,
+          0,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/serializers/merchant_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1661819514
+    "timestamp": 1661820287
   }
 }
