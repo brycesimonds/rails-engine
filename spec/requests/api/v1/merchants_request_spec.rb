@@ -40,12 +40,11 @@ RSpec.describe "Merchants API" do
   end
 
   it 'can get all items for a given merchant id' do
-    id = create(:merchant).id
-    x = create(:merchant) do |merchant|
-      merchant.items.create(attributes_for(:item))
-    end
-    binding.pry
-    get "/api/v1/merchants/#{id}/items"
+    merchant = create(:merchant)
+    merchant.items.create(attributes_for(:item))
+    merchant.items.create(attributes_for(:item))
+
+    get "/api/v1/merchants/#{merchant.id}/items"
 
     response_body = JSON.parse(response.body, symbolize_names: true)
     merchant = response_body[:data]
