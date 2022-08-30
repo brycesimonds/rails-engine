@@ -2,12 +2,12 @@ class Api::V1::MerchantsController < ApplicationController
   before_action :set_merchant, only: [:show]
   def index
     @merchants = Merchant.all
-    json_response(@merchants)
+    json_response(MerchantSerializer.new(@merchants))
     # render json: MerchantSerializer.new(Merchant.all)
   end
 
   def show
-    json_response(@merchant)
+    json_response(MerchantSerializer.new(@merchant))
     # render json: MerchantSerializer.new(Merchant.find(params[:id]))
   end
 
