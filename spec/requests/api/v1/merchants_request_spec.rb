@@ -40,21 +40,20 @@ RSpec.describe "Merchants API" do
   end
 
   it 'can get all items for a given merchant id' do
-    merchant = create(:merchant)
-    merchant.items.create(attributes_for(:item))
-    merchant.items.create(attributes_for(:item))
+    merchant_1 = create(:merchant)
+    merchant_1.items.create(attributes_for(:item))
+    merchant_1.items.create(attributes_for(:item))
 
-    get "/api/v1/merchants/#{merchant.id}/items"
-
+    merchant_2 = create(:merchant)
+    merchant_2.items.create(attributes_for(:item))
+    merchant_2.items.create(attributes_for(:item))
+    
+    get "/api/v1/merchants/#{merchant_1.id}/items"
+ 
     response_body = JSON.parse(response.body, symbolize_names: true)
-    merchant = response_body[:data]
-  
+    merchant_1_data = response_body[:data]
+
     expect(response).to be_successful
-
-    expect(merchant).to have_key(:id)
-    expect(merchant[:id].to_i).to eq(id)
-
-    expect(merchant[:attributes]).to have_key(:name)
-    expect(merchant[:attributes][:name]).to be_a(String)
+    expect(merchant_1_data[:relationships][:items][:data].count).to eq(2)
   end
 end
