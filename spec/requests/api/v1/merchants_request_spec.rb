@@ -8,8 +8,7 @@ RSpec.describe "Merchants API" do
 
     expect(response).to be_successful
 
-    response_body = JSON.parse(response.body, symbolize_names: true)
-    merchants = response_body[:data]
+    merchants = JSON.parse(response.body, symbolize_names: true)
 
     expect(merchants.count).to eq(3)
 
@@ -17,8 +16,8 @@ RSpec.describe "Merchants API" do
       expect(merchant).to have_key(:id)
       expect(merchant[:id].to_i).to be_an(Integer)
 
-      expect(merchant[:attributes]).to have_key(:name)
-      expect(merchant[:attributes][:name]).to be_a(String)
+      expect(merchant).to have_key(:name)
+      expect(merchant[:name]).to be_a(String)
     end
   end
 
@@ -27,16 +26,15 @@ RSpec.describe "Merchants API" do
 
     get "/api/v1/merchants/#{id}"
 
-    response_body = JSON.parse(response.body, symbolize_names: true)
-    merchant = response_body[:data]
-  
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
     expect(response).to be_successful
 
     expect(merchant).to have_key(:id)
-    expect(merchant[:id].to_i).to eq(id)
+    expect(merchant[:id]).to eq(id)
 
-    expect(merchant[:attributes]).to have_key(:name)
-    expect(merchant[:attributes][:name]).to be_a(String)
+    expect(merchant).to have_key(:name)
+    expect(merchant[:name]).to be_a(String)
   end
 
   it 'can get all items for a given merchant id' do
