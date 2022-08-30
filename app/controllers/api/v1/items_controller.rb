@@ -6,7 +6,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def show
-    json_response(MerchantSerializer.new(@item))
+    json_response(ItemSerializer.new(@item))
   end
 
   private
