@@ -12,3 +12,4 @@ RSpec.describe Merchant, type: :model do
     it { should have_many(:transactions).through(:invoices) }
     it { should have_many(:customers).through(:invoices) }
   end
+end 
