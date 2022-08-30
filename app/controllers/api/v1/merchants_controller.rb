@@ -14,7 +14,8 @@ class Api::V1::MerchantsController < ApplicationController
   def items
     if params[:merchant_id].present?
       merchant = Merchant.find(params[:merchant_id])
-      render json: ItemSerializer.new(merchant.items)
+      json_response(ItemSerializer.new(merchant.items))
+      # render json: ItemSerializer.new(merchant.items)
     else
       render status: 404
     end 
