@@ -41,6 +41,18 @@ RSpec.describe "Merchants API" do
     expect(merchant[:attributes][:name]).to be_a(String)
   end
 
+  it 'returns 404 if no such merchant id exists' do
+    merchant_1 = create(:merchant)
+    merchant_1.items.create(attributes_for(:item))
+    merchant_1.items.create(attributes_for(:item))
+
+    get "/api/v1/merchants/567"
+    response_body = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response.status).to eq(404)
+    expect(response_body[:message]).to eq("Couldn't find Merchant with 'id'=567")
+  end
+
   it 'can get all items for a given merchant id' do
     merchant_1 = create(:merchant)
     merchant_1.items.create(attributes_for(:item))
