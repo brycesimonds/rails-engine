@@ -10,8 +10,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    # binding.pry
-    json_response(ItemSerializer.new(Item.create(item_params)))
+    json_response(ItemSerializer.new(Item.create(item_params)), :created)
   end
 
   private
