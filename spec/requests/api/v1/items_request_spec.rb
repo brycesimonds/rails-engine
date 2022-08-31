@@ -89,15 +89,21 @@ RSpec.describe "Items API" do
     expect(created_item.merchant_id).to eq(item_params[:merchant_id])
   end
 
-  it 'can delete an item' do
-    item = create(:item)
+  it 'can create and then delete an item' do
+    merchant = create(:merchant)
+    item_params = ({
+      name: 'How do make items from an api for dummies',
+      description: 'It is a book that may help junior devs',
+      unit_price: 20.34,
+      merchant_id: merchant.id
+    })
+    headers = {"CONTENT_TYPE" => "application/json"}
+    post "/api/v1/items", headers: headers, params: JSON.generate(item: item_params)
+    created_item = Item.last
 
-    expect(Item.count).to eq(1)
-  
-    delete "/api/v1/books/#{item.id}"
-  
+    expect{ delete "/api/v1/items/#{created_item.id}" }.to change(Item, :count).by(-1)
+    
     expect(response).to be_successful
-    expect(Item.count).to eq(0)
-    expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+    expect{Item.find(created_item.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
 end 
