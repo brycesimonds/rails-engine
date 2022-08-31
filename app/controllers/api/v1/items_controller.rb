@@ -1,5 +1,5 @@
 class Api::V1::ItemsController < ApplicationController
-  before_action :set_item, only: [:show]
+  before_action :set_item, only: [:show, :destroy]
   def index
     @items = Item.all
     json_response(ItemSerializer.new(@items))
@@ -11,6 +11,11 @@ class Api::V1::ItemsController < ApplicationController
 
   def create
     json_response(ItemSerializer.new(Item.create(item_params)), :created)
+  end
+
+  def destroy
+    json_response(Item.destroy(params[:id]))
+    Invoice.destroy_invoices_with_no_items
   end
 
   private

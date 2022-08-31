@@ -88,4 +88,44 @@ RSpec.describe "Items API" do
     expect(created_item.unit_price).to eq(item_params[:unit_price])
     expect(created_item.merchant_id).to eq(item_params[:merchant_id])
   end
+
+  it 'can create and then delete an item' do
+    merchant = create(:merchant)
+    item_params = ({
+      name: 'How do make items from an api for dummies',
+      description: 'It is a book that may help junior devs',
+      unit_price: 20.34,
+      merchant_id: merchant.id
+    })
+    headers = {"CONTENT_TYPE" => "application/json"}
+    post "/api/v1/items", headers: headers, params: JSON.generate(item: item_params)
+    created_item = Item.last
+
+    expect{ delete "/api/v1/items/#{created_item.id}" }.to change(Item, :count).by(-1)
+    
+    expect(response).to be_successful
+    expect{Item.find(created_item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+  end
+
+  it 'will delete an invoice associated with the deleted item if the invoice is then empty' do 
+    merchant_1 = Merchant.create!(name: Faker::Name.name)
+
+    item_1 = Item.create!(name: Faker::Beer.name, description: Faker::Beer.style, unit_price: 500, merchant_id: merchant_1.id )
+    item_2 = Item.create!(name: Faker::Beer.name, description: "So good!", unit_price: 500, merchant_id: merchant_1.id )
+
+    customer_1 = Customer.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
+
+    invoice_1 = Invoice.create!(status: 0, created_at: Time.new(2000), customer_id: customer_1.id, merchant_id: merchant_1.id)
+    invoice_2 = Invoice.create!(status: 0, created_at: Time.new(2000), customer_id: customer_1.id, merchant_id: merchant_1.id)
+    invoice_3 = Invoice.create!(status: 0, created_at: Time.new(2000), customer_id: customer_1.id, merchant_id: merchant_1.id)
+
+    invoice_item_1 = InvoiceItem.create!(quantity: 4, unit_price: 800, item_id: item_1.id, invoice_id: invoice_1.id)
+    invoice_item_2 = InvoiceItem.create!(quantity: 4, unit_price: 800, item_id: item_1.id, invoice_id: invoice_2.id)
+    invoice_item_3 = InvoiceItem.create!(quantity: 4, unit_price: 800, item_id: item_2.id, invoice_id: invoice_3.id)
+
+    expect{ delete "/api/v1/items/#{item_1.id}" }.to change(Invoice, :count).by(-2)
+
+    expect(response).to be_successful
+    expect{Invoice.find(invoice_1.id)}.to raise_error(ActiveRecord::RecordNotFound)
+  end
 end 
