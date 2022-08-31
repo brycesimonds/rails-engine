@@ -14,11 +14,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def destroy
-    # render json: Item.delete(params[:id])
-    # json_response(Item.delete(params[:id]), :no_content)
-    # json_response(Item.delete(params[:id]))
-    # json_response(ItemSerializer.new(Item.delete(params[:id])), :no_content)
-    render json: ItemSerializer.new(Item.destroy(params[:id]))
+    json_response(ItemSerializer.new(Item.destroy(params[:id])), :no_content)
   end
 
   private

@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2022-08-31T11:37:32-06:00">2022-08-31T11:37:32-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2022-08-31T11:39:35-06:00">2022-08-31T11:39:35-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -121,7 +121,7 @@
             <td class="cell--number">3</td>
             <td class="cell--number">3</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">1.33</td>
             
           </tr>
         
@@ -587,24 +587,24 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="20">
-            
-            
-
-            
-
-            <code class="ruby">    # json_response(ItemSerializer.new(Item.delete(params[:id])), :no_content)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="21">
+          <li class="covered" data-hits="1" data-linenumber="20">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    render json: ItemSerializer.new(Item.destroy(params[:id]))</code>
+            <code class="ruby">    json_response(ItemSerializer.new(Item.destroy(params[:id])), :no_content)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="21">
+            
+            
+
+            
+
+            <code class="ruby">    # render json: ItemSerializer.new(Item.destroy(params[:id]))</code>
           </li>
         </div>
       
@@ -1107,8 +1107,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="3">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="2" data-linenumber="3">
+            <span class="hits">2</span>
             
 
             
