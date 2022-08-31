@@ -179,12 +179,12 @@ RSpec.describe "Items API" do
   it 'can get the merchant data for a given item id' do
     item_1 = create(:item)
     
-    get "/api/v1/merchants/#{item_1.id}/merchant"
+    get "/api/v1/items/#{item_1.id}/merchant"
     
     response_body = JSON.parse(response.body, symbolize_names: true)
-    merchant_1_data = response_body[:data]
+    item_1_data = response_body[:data]
 
     expect(response).to be_successful
-    expect(merchant_1_data.count).to eq(2)
+    expect(item_1_data.count).to eq(3)
   end
 end 
