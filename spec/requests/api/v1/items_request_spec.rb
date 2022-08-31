@@ -129,7 +129,7 @@ RSpec.describe "Items API" do
     expect{Invoice.find(invoice_1.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
 
-  it "can update an existing item" do
+  it "can update an existing item with valid attribute" do
     id = create(:item).id
     previous_name = Item.last.name
     item_params = { name: "New Tasty Beer" }

@@ -19,7 +19,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    json_response(ItemSerializer.new(Item.update(item_params)))
+    json_response(ItemSerializer.new(Item.update(params[:id], item_params)))
   end
 
   private
