@@ -165,7 +165,7 @@ RSpec.describe "Items API" do
     expect(response.status).to eq(404)
   end
 
-  it "returns a 404 error if the item id is a string" do
+  it "returns a 404 error if the merchant id is a bad one" do
     id = create(:item).id
     previous_name = Item.last.name
     item_params = { name: "New Tasty Beer", merchant_id: 999 }
@@ -174,5 +174,17 @@ RSpec.describe "Items API" do
     patch "/api/v1/items/#{id}", headers: headers, params: JSON.generate({item: item_params})
 
     expect(response.status).to eq(404)
+  end
+
+  it 'can get the merchant data for a given item id' do
+    item_1 = create(:item)
+    
+    get "/api/v1/merchants/#{item_1.id}/merchant"
+    
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    merchant_1_data = response_body[:data]
+
+    expect(response).to be_successful
+    expect(merchant_1_data.count).to eq(2)
   end
 end 
