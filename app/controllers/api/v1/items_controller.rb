@@ -18,6 +18,10 @@ class Api::V1::ItemsController < ApplicationController
     Invoice.destroy_invoices_with_no_items
   end
 
+  def update
+    json_response(ItemSerializer.new(Item.update(item_params)))
+  end
+
   private
 
   def set_item

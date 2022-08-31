@@ -131,7 +131,7 @@ RSpec.describe "Items API" do
 
   it "can update an existing item" do
     id = create(:item).id
-    previous_name = item.last.name
+    previous_name = Item.last.name
     item_params = { name: "New Tasty Beer" }
     headers = {"CONTENT_TYPE" => "application/json"}
   
@@ -139,7 +139,7 @@ RSpec.describe "Items API" do
     item = Item.find_by(id: id)
   
     expect(response).to be_successful
-    expect(item.title).to_not eq(previous_name)
-    expect(item.title).to eq("New Tasty Beer")
+    expect(item.name).to_not eq(previous_name)
+    expect(item.name).to eq("New Tasty Beer")
   end
 end 
