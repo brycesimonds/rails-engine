@@ -26,6 +26,11 @@ class Api::V1::ItemsController < ApplicationController
     end 
   end
 
+  def merchant
+    item = Item.find(params[:item_id])
+    json_response(MerchantSerializer.new(item.merchant))
+  end
+
   private
 
   def set_item
