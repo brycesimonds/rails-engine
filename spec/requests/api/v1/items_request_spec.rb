@@ -128,4 +128,51 @@ RSpec.describe "Items API" do
     expect(response).to be_successful
     expect{Invoice.find(invoice_1.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
+
+  it "can update an existing item with valid attribute" do
+    id = create(:item).id
+    previous_name = Item.last.name
+    item_params = { name: "New Tasty Beer" }
+    headers = {"CONTENT_TYPE" => "application/json"}
+  
+    patch "/api/v1/items/#{id}", headers: headers, params: JSON.generate({item: item_params})
+    item = Item.find_by(id: id)
+  
+    expect(response).to be_successful
+    expect(item.name).to_not eq(previous_name)
+    expect(item.name).to eq("New Tasty Beer")
+  end
+
+  it "returns a 404 error if the item id does not exist" do
+    id = create(:item).id
+    previous_name = Item.last.name
+    item_params = { name: "New Tasty Beer" }
+    headers = {"CONTENT_TYPE" => "application/json"}
+  
+    patch "/api/v1/items/99999", headers: headers, params: JSON.generate({item: item_params})
+
+    expect(response.status).to eq(404)
+  end
+
+  it "returns a 404 error if the item id is a string" do
+    id_string = create(:item).id.to_s
+    previous_name = Item.last.name
+    item_params = { name: "New Tasty Beer" }
+    headers = {"CONTENT_TYPE" => "application/json"}
+  
+    patch "/api/v1/items/99999", headers: headers, params: JSON.generate({item: item_params})
+
+    expect(response.status).to eq(404)
+  end
+
+  it "returns a 404 error if the item id is a string" do
+    id = create(:item).id
+    previous_name = Item.last.name
+    item_params = { name: "New Tasty Beer", merchant_id: 999 }
+    headers = {"CONTENT_TYPE" => "application/json"}
+  
+    patch "/api/v1/items/#{id}", headers: headers, params: JSON.generate({item: item_params})
+
+    expect(response.status).to eq(404)
+  end
 end 

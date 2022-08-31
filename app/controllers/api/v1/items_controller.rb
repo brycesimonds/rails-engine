@@ -18,6 +18,14 @@ class Api::V1::ItemsController < ApplicationController
     Invoice.destroy_invoices_with_no_items
   end
 
+  def update
+    if Item.update(params[:id], item_params).save
+      json_response(ItemSerializer.new(Item.update(params[:id], item_params)))
+    else 
+      render status: 404
+    end 
+  end
+
   private
 
   def set_item
