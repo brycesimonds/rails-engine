@@ -15,6 +15,14 @@ class Api::V1::ItemsController < ApplicationController
 
   def destroy
     json_response(Item.destroy(params[:id]))
+    Invoice.all.each do |invoice|
+      if invoice.items.empty?
+        invoice.destroy 
+      end
+    end
+    #^ how to use active record to do this ruby instead
+    # invoice_ids_to_destroy = Invoice.where(items = []).pluck(:id)
+    # Invoice.destroy(invoice_ids_to_destroy)
   end
 
   private
