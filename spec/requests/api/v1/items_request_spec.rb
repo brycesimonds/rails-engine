@@ -106,4 +106,24 @@ RSpec.describe "Items API" do
     expect(response).to be_successful
     expect{Item.find(created_item.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
+
+  it 'will delete an invoice associated with the deleted item if the invoice is then empty' do 
+    merchant_1 = Merchant.create!(name: Faker::Name.name)
+
+    item_1 = Item.create!(name: Faker::Beer.name, description: Faker::Beer.style, unit_price: 500, merchant_id: merchant_1.id )
+    # item_2 = Item.create!(name: Faker::Beer.name, description: Faker::Beer.style, unit_price: 500, merchant_id: merchant_1.id )
+
+    customer_1 = Customer.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
+
+    invoice_1 = Invoice.create!(status: 0, created_at: Time.new(2000), customer_id: customer_1.id, merchant_id: merchant_1.id)
+
+    invoice_item_1 = InvoiceItem.create!(quantity: 4, unit_price: 800, item_id: item_1.id, invoice_id: invoice_1.id)
+    # invoice_item_2 = InvoiceItem.create!(quantity: 2, unit_price: 1400, item_id: item_2.id, invoice_id: invoice_1.id)
+
+  binding.pry
+    expect{ delete "/api/v1/items/#{item.id}" }.to change(Item, :count).by(-1)
+
+    expect(response).to be_successful
+    expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+  end
 end 
