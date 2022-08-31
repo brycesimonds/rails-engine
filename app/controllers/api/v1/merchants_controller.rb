@@ -3,22 +3,15 @@ class Api::V1::MerchantsController < ApplicationController
   def index
     @merchants = Merchant.all
     json_response(MerchantSerializer.new(@merchants))
-    # render json: MerchantSerializer.new(Merchant.all)
   end
 
   def show
     json_response(MerchantSerializer.new(@merchant))
-    # render json: MerchantSerializer.new(Merchant.find(params[:id]))
   end
 
   def items
-    if params[:merchant_id].present?
-      merchant = Merchant.find(params[:merchant_id])
-      json_response(ItemSerializer.new(merchant.items))
-      # render json: ItemSerializer.new(merchant.items)
-    else
-      render status: 404
-    end 
+    merchant = Merchant.find(params[:merchant_id])
+    json_response(ItemSerializer.new(merchant.items))
   end
 
   private
