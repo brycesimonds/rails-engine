@@ -16,4 +16,7 @@ class Invoice < ApplicationRecord
       end
     end
   end
+    #^ how to use active record to do this ruby instead
+    # invoice_ids_to_destroy = Invoice.where(items = []).pluck(:id)
+    # Invoice.destroy(invoice_ids_to_destroy)
 end 
