@@ -164,4 +164,15 @@ RSpec.describe "Items API" do
 
     expect(response.status).to eq(404)
   end
+
+  it "returns a 404 error if the item id is a string" do
+    id = create(:item).id
+    previous_name = Item.last.name
+    item_params = { name: "New Tasty Beer", merchant_id: 999 }
+    headers = {"CONTENT_TYPE" => "application/json"}
+  
+    patch "/api/v1/items/#{id}", headers: headers, params: JSON.generate({item: item_params})
+
+    expect(response.status).to eq(404)
+  end
 end 
