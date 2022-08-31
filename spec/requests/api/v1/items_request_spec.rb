@@ -142,4 +142,15 @@ RSpec.describe "Items API" do
     expect(item.name).to_not eq(previous_name)
     expect(item.name).to eq("New Tasty Beer")
   end
+
+  it "returns a 404 error if the item id does not exist" do
+    id = create(:item).id
+    previous_name = Item.last.name
+    item_params = { name: "New Tasty Beer" }
+    headers = {"CONTENT_TYPE" => "application/json"}
+  
+    patch "/api/v1/items/99999", headers: headers, params: JSON.generate({item: item_params})
+
+    expect(response.status).to eq(404)
+  end
 end 
