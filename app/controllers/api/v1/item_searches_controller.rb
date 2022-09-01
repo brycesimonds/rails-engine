@@ -5,7 +5,7 @@ class Api::V1::ItemSearchesController < ApplicationController
     elsif params[:min_price]
       json_response(ItemSerializer.new(Item.search_min_price(params[:min_price])))
     elsif params[:max_price]
-      json_response(ItemSerializer.new(Item.search_price(params[:max_price])))
+      json_response(ItemSerializer.new(Item.search_max_price(params[:max_price])))
     end
   end
 end
