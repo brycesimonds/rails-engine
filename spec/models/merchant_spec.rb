@@ -12,4 +12,17 @@ RSpec.describe Merchant, type: :model do
     it { should have_many(:transactions).through(:invoices) }
     it { should have_many(:customers).through(:invoices) }
   end
+
+  describe 'class methods' do 
+    it 'can perform a case insensitive name search for a merchants' do
+      merchant_1 = Merchant.create!(name: "Harold the Big")
+      merchant_2 = Merchant.create!(name: "Hargret the Large")
+      merchant_3 = Merchant.create!(name: "Harry the Giant")
+      merchant_4 = Merchant.create!(name: "Suzy")
+
+      expect(Merchant.search("har")).to eq([merchant_1, merchant_2, merchant_3])
+      expect(Merchant.search("HaR")).to eq([merchant_1, merchant_2, merchant_3])
+      expect(Merchant.search("su")).to eq([merchant_4])
+    end
+  end
 end 
