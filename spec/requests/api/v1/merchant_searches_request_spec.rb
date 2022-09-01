@@ -24,4 +24,22 @@ RSpec.describe "Merchant Searches API" do
       expect(merchant[:attributes][:name]).to be_a(String)
     end
   end
+
+  it "if no matches found does not return a 404 and does return a data key with an empty array" do
+    merchant_1 = Merchant.create!(name: "Harold the Big")
+    merchant_2 = Merchant.create!(name: "Hargret the Large")
+    merchant_3 = Merchant.create!(name: "Harry the Giant")
+    merchant_4 = Merchant.create!(name: "Suzy")
+
+    get '/api/v1/merchants/find_all?name=XXXX'
+   
+    expect(response).to be_successful
+
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    merchants = response_body[:data]
+
+    expect(response.status).to eq(200)
+    expect(merchants.count).to eq(0)
+    expect(response_body).to eq({:data=>[]})
+  end
 end 
