@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   has_many :transactions, through: :invoices
   has_many :customers, through: :invoices
 
-  def self.search(search_criteria)
+  def self.search_name(search_criteria)
     where("name ILIKE ?", "%#{search_criteria}%").order(:name).limit(1).first
   end
 end 

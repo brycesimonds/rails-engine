@@ -57,8 +57,8 @@ RSpec.describe "Item Searches API" do
 
     item_1 = Item.create!(name: Faker::Beer.name, description: Faker::Beer.style, unit_price: 10.00, merchant_id: merchant.id)
     item_2 = Item.create!(name: Faker::Beer.name, description: Faker::Beer.style, unit_price: 49.99, merchant_id: merchant.id)
-    item_3 = Item.create!(name: Faker::Beer.name, description: Faker::Beer.style, unit_price: 50.00, merchant_id: merchant.id)
-    item_4 = Item.create!(name: Faker::Beer.name, description: Faker::Beer.style, unit_price: 50.01, merchant_id: merchant.id)
+    item_3 = Item.create!(name: "Pear", description: Faker::Beer.style, unit_price: 50.00, merchant_id: merchant.id)
+    item_4 = Item.create!(name: "Berry", description: Faker::Beer.style, unit_price: 50.01, merchant_id: merchant.id)
 
     get '/api/v1/items/find?min_price=50'
    
@@ -67,6 +67,8 @@ RSpec.describe "Item Searches API" do
     response_body = JSON.parse(response.body, symbolize_names: true)
     item = response_body[:data]
  
+    expect(item[:attributes][:name]).to eq("Berry")
+
     expect(item).to have_key(:id)
     expect(item[:id]).to be_a(String)
 
