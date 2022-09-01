@@ -15,6 +15,8 @@ RSpec.describe "Item Searches API" do
     
     response_body = JSON.parse(response.body, symbolize_names: true)
     item = response_body[:data]
+    
+    expect(item[:attributes][:name]).to eq("Peach")
 
     expect(item).to have_key(:id)
     expect(item[:id]).to be_a(String)
@@ -48,5 +50,36 @@ RSpec.describe "Item Searches API" do
     item = response_body[:data]
  
     expect(item).to be(nil)
+  end
+
+  it "sends an item who matches the min price parameters searched for" do
+    merchant = Merchant.create!(name: "Harold the Big")
+
+    item_1 = Item.create!(name: Faker::Beer.name, description: Faker::Beer.style, unit_price: 10.00, merchant_id: merchant.id)
+    item_2 = Item.create!(name: Faker::Beer.name, description: Faker::Beer.style, unit_price: 49.99, merchant_id: merchant.id)
+    item_3 = Item.create!(name: Faker::Beer.name, description: Faker::Beer.style, unit_price: 50.00, merchant_id: merchant.id)
+    item_4 = Item.create!(name: Faker::Beer.name, description: Faker::Beer.style, unit_price: 50.01, merchant_id: merchant.id)
+
+    get '/api/v1/items/find?min_price=50'
+   
+    expect(response).to be_successful
+  
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    item = response_body[:data]
+ 
+    expect(item).to have_key(:id)
+    expect(item[:id]).to be_a(String)
+
+    expect(item[:attributes]).to have_key(:name)
+    expect(item[:attributes][:name]).to be_a(String)
+
+    expect(item[:attributes]).to have_key(:description)
+    expect(item[:attributes][:description]).to be_a(String)
+
+    expect(item[:attributes]).to have_key(:unit_price)
+    expect(item[:attributes][:unit_price]).to be_a(Float)
+
+    expect(item[:attributes]).to have_key(:merchant_id)
+    expect(item[:attributes][:merchant_id]).to be_an(Integer)
   end
 end 
