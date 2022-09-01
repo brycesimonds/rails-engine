@@ -1,44 +1,26 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/spec/requests/api/v1/item_searches_request_spec.rb": {
+      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/spec/models/item_spec.rb": {
         "lines": [
           1,
           null,
           1,
           1,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
+          1,
+          1,
+          1,
           null,
           null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
           1,
           0,
           null,
@@ -48,9 +30,16 @@
           0,
           null,
           0,
-          null,
+          0,
+          0,
           0,
           null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          0,
           0,
           0,
           null,
@@ -66,28 +55,10 @@
           1,
           null,
           1,
+          1,
+          1,
+          1,
           null,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
           null,
           null
         ]
@@ -361,7 +332,7 @@
           null,
           null,
           1,
-          2,
+          1,
           null,
           null,
           null,
@@ -431,6 +402,36 @@
           null
         ]
       },
+      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/models/item.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          4,
+          null,
+          null
+        ]
+      },
+      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
       "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/models/merchant.rb": {
         "lines": [
           1,
@@ -448,91 +449,8 @@
           null,
           null
         ]
-      },
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/models/item.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null
-        ]
-      },
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/controllers/api/v1/item_searches_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          0,
-          1,
-          1,
-          0,
-          0,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/controllers/concerns/response.rb": {
-        "lines": [
-          1,
-          1,
-          0,
-          null,
-          null
-        ]
-      },
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/controllers/concerns/exception_handler.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/serializers/item_serializer.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null
-        ]
       }
     },
-    "timestamp": 1662061389
+    "timestamp": 1662061606
   }
 }

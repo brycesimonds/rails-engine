@@ -49,10 +49,10 @@ RSpec.describe Item do
       item_3 = Item.create!(name: "Pear", description: Faker::Beer.style, unit_price: 50.00, merchant_id: merchant.id)
       item_4 = Item.create!(name: "Berry", description: Faker::Beer.style, unit_price: 50.01, merchant_id: merchant.id)
 
-      expect(Item.search_price(50.00)).to eq(item_4)
-      expect(Item.search_price(9.00)).to eq(item_2)
-      expect(Item.search_price(2.00)).to eq(item_2)
-      expect(Item.search_price(50.01)).to eq(item_4)
+      expect(Item.search_min_price(50.00)).to eq(item_4)
+      expect(Item.search_min_price(9.00)).to eq(item_2)
+      expect(Item.search_min_price(2.00)).to eq(item_2)
+      expect(Item.search_min_price(50.01)).to eq(item_4)
     end
   end
 end 
