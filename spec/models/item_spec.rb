@@ -24,9 +24,21 @@ RSpec.describe Item do
       item_3 = Item.create!(name: "Pear", description: Faker::Beer.style, unit_price: Faker::Number.decimal(l_digits: 2), merchant_id: merchant.id)
       item_4 = Item.create!(name: "Berry", description: Faker::Beer.style, unit_price: Faker::Number.decimal(l_digits: 2), merchant_id: merchant.id)
 
-      expect(Item.search("p")).to eq([item_1, item_2, item_3])
-      expect(Item.search("P")).to eq([item_1, item_2, item_3])
-      expect(Item.search("bEr")).to eq([item_4])
+      expect(Item.search("p")).to eq(item_1)
+      expect(Item.search("P")).to eq(item_1)
+      expect(Item.search("pEa")).to eq(item_1)
+      expect(Item.search("bEr")).to eq(item_4)
+    end
+
+    it 'if in search method, no result is found, returns nil' do
+      merchant = Merchant.create!(name: "Harold the Big")
+
+      item_1 = Item.create!(name: "Peach", description: Faker::Beer.style, unit_price: Faker::Number.decimal(l_digits: 2), merchant_id: merchant.id)
+      item_2 = Item.create!(name: "Pineapple", description: Faker::Beer.style, unit_price: Faker::Number.decimal(l_digits: 2), merchant_id: merchant.id)
+      item_3 = Item.create!(name: "Pear", description: Faker::Beer.style, unit_price: Faker::Number.decimal(l_digits: 2), merchant_id: merchant.id)
+      item_4 = Item.create!(name: "Berry", description: Faker::Beer.style, unit_price: Faker::Number.decimal(l_digits: 2), merchant_id: merchant.id)
+
+      expect(Item.search("XXX")).to eq(nil)
     end
   end
 end 
