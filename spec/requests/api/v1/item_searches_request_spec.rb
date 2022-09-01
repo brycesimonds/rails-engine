@@ -15,8 +15,6 @@ RSpec.describe "Item Searches API" do
     
     response_body = JSON.parse(response.body, symbolize_names: true)
     item = response_body[:data]
-    
-    expect(item.count).to eq(1)
 
     expect(item).to have_key(:id)
     expect(item[:id]).to be_a(String)
@@ -32,5 +30,23 @@ RSpec.describe "Item Searches API" do
 
     expect(item[:attributes]).to have_key(:merchant_id)
     expect(item[:attributes][:merchant_id]).to be_an(Integer)
+  end
+
+  it "sends null for a search with no results found" do
+    merchant = Merchant.create!(name: "Harold the Big")
+
+    item_1 = Item.create!(name: "Peach", description: Faker::Beer.style, unit_price: Faker::Number.decimal(l_digits: 2), merchant_id: merchant.id)
+    item_2 = Item.create!(name: "Pineapple", description: Faker::Beer.style, unit_price: Faker::Number.decimal(l_digits: 2), merchant_id: merchant.id)
+    item_3 = Item.create!(name: "Pear", description: Faker::Beer.style, unit_price: Faker::Number.decimal(l_digits: 2), merchant_id: merchant.id)
+    item_4 = Item.create!(name: "Berry", description: Faker::Beer.style, unit_price: Faker::Number.decimal(l_digits: 2), merchant_id: merchant.id)
+
+    get '/api/v1/items/find?name=XxXxX'
+   
+    expect(response).to be_successful
+  
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    item = response_body[:data]
+ 
+    expect(item).to be(nil)
   end
 end 
