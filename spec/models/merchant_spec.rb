@@ -21,6 +21,8 @@ RSpec.describe Merchant, type: :model do
       merchant_4 = Merchant.create!(name: "Suzy")
 
       expect(Merchant.search("har")).to eq([merchant_1, merchant_2, merchant_3])
+      expect(Merchant.search("HaR")).to eq([merchant_1, merchant_2, merchant_3])
+      expect(Merchant.search("su")).to eq([merchant_4])
     end
   end
 end 
