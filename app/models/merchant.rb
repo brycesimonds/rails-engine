@@ -7,4 +7,8 @@ class Merchant < ApplicationRecord
   has_many :invoice_items, through: :items
   has_many :transactions, through: :invoices
   has_many :customers, through: :invoices
+
+  def self.search(search_criteria)
+    where("name ILIKE ?", "%#{search_criteria}%")
+  end
 end
