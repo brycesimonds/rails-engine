@@ -1,13 +1,28 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/spec/requests/api/v1/item_searches_request_spec.rb": {
+      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/spec/models/item_spec.rb": {
         "lines": [
           1,
           null,
           1,
           1,
           1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
           null,
           1,
           1,
@@ -15,28 +30,9 @@
           1,
           null,
           1,
-          null,
-          0,
-          null,
           0,
           0,
           null,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
           null,
           null
         ]
@@ -380,6 +376,28 @@
           null
         ]
       },
+      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/models/item.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
       "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/models/merchant.rb": {
         "lines": [
           1,
@@ -397,30 +415,8 @@
           null,
           null
         ]
-      },
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/bryce.simonds/Desktop/turing/3Module/projects/rails_engine_lite/rails-engine/app/models/item.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null
-        ]
       }
     },
-    "timestamp": 1662054739
+    "timestamp": 1662054969
   }
 }
