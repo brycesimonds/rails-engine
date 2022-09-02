@@ -9,7 +9,19 @@ class Item < ApplicationRecord
   has_many :transactions, through: :invoices
   has_many :customers, through: :invoices
 
-  def self.search(search_criteria)
+  def self.search_name(search_criteria)
     where("name ILIKE ?", "%#{search_criteria}%").order(:name).limit(1).first
+  end
+
+  def self.search_min_price(search_criteria)
+    where('unit_price >= ?', search_criteria).order(:name).limit(1).first
+  end
+
+  def self.search_max_price(search_criteria)
+    where('unit_price <= ?', search_criteria).order(:name).limit(1).first
+  end
+
+  def self.search_min_max_price(min_price, max_price)
+    where(['unit_price >= ? and unit_price <= ?', min_price, max_price]).order(:name).limit(1).first
   end
 end 
